@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Lei Shi">
+    <meta http-equiv="Cache-Control" content="o-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="csrf-token" content="1483780974##87f89328c5616669f00302a263fe9061bb852818">
+
+
+    <title>源代码 - 题库</title>
+
+
+    <meta content="源代码课程分为基础课和项目课，内容涵盖了Linux、Python、Java、C语言、Ruby、Android、IOS开发、大数据、信息安全等IT技术领域。" name="description">
+    <meta content="源代码课程,IT培训课程,IT实训课程,IT在线课程,all" name="keywords">
+
+    <meta content="源代码,晓通科技" name="author">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="../static/font-awesome//4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/highlight.js/9.8.0/monokai-sublime.min.css">
+    <link rel="stylesheet" href="../app/css/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../app/css/libs/katex/0.6.0/katex.min.css">
+    <link rel="stylesheet" href="../app/css/libs/videojs/5.11.7/video-js.min.css">
+    <link rel="stylesheet" href="../app/css/dest/styles.css?=2016121272249">
+
+    <style>
+        td{padding-top:16px; padding-bottom: 16px}
+        table tr:nth-child(odd){
+            background: #ccc;
+        }
+        @font-face {
+            font-family: "lantingxihei";
+            src: url("../fonts/FZLTCXHJW.TTF");
+        }
+
+        /* modal 模态框*/
+        #invite-user .modal-body {
+            overflow: hidden;
+        }
+        #invite-user .modal-body .form-label {
+            margin-bottom: 16px;
+            font-size:14px;
+        }
+        #invite-user .modal-body .form-invite {
+            width: 80%;
+            padding: 6px 12px;
+            background-color: #eeeeee;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            float: left;
+            margin-right: 10px;
+        }
+        #invite-user .modal-body .msg-modal-style {
+            background-color: #7dd383;
+            margin-top: 10px;
+            padding: 6px 0;
+            text-align: center;
+            width: 100%;
+        }
+        #invite-user .modal-body .modal-flash {
+            position: absolute;
+            top: 53px;
+            right: 74px;
+            z-index: 999;
+        }
+        /* end modal */
+
+        .en-footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">源代码</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../index.html">
+                <img src="../img/logo_13.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="header-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        课程
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="active" href="../courses/index.html" >全部课程</a></li>
+                        <li><a class="" href="../courses/index.html?status=preview" >即将上线</a></li>
+                        <li><a class="" href="../developer/index.html">开发者</a></li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="../paths/index.html">路径</a>
+                </li>
+                <li class="">
+                    <a href="../subject/index.html">题库</a>
+                </li>
+                <li class="">
+                    <a href="../questions/index.html">讨论区</a>
+                </li>
+                <li class=" bootcamp new-nav logo-1111">
+                    <a href="../bootcamp/index.html">训练营</a>
+
+                </li>
+                <li class=" new-nav logo-1111">
+                    <a href="../vip/index.html">会员</a>
+
+                </li>
+
+            </ul>
+
+
+            <div class="navbar-right btns">
+                <a class="btn btn-default navbar-btn sign-in" data-sign="signin" href="#sign-modal" data-toggle="modal">登录</a>
+                <a class="btn btn-default navbar-btn sign-up" data-sign="signup" href="#sign-modal" data-toggle="modal">注册</a>
+            </div>
+
+
+            <form class="navbar-form navbar-right" action="../search" method="get" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="搜索 课程/问答">
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container layout">
+<!--    <div class="col-md-9">-->
+    <span style="font-size:40px;"><i class="fa fa-database"></i> 分类</span>
+    <div class="course-img">
+        <a class="course-box" href="../subject/show.html">
+        <img width="200px" src="../book/base_c.jpg">
+        <img width="300px" src="../book/data_structure.jpg">
+        <img width="320px" src="../book/machine_learning.jpg">
+        <img width="220px" src="../book/static_method.jpg">
+        </a>
+
+    </div>
+
+
+    <div class="col-md-9" style="position:relative; top: 20px">
+    <input type="text" style="width: 400px" placeholder="搜索 题目/答案">
+        <div class="navbar-right">
+            <a style="font-size: 18px; position:relative; top:-2px;margin-right: 5px">难度</a>
+            <a style="font-size: 18px; position:relative; top:-2px;margin-right: 5px">状态</a>
+            <a style="font-size: 18px; position:relative; top:-2px;margin-right: 5px">列表</a>
+            <a style="font-size: 18px; position:relative; top:-2px;margin-right: 100px">标签</a>
+        </div>
+
+    <table style="margin-top: 20px; width: 100%" class="dataintable">
+        <tr>
+            <th style="width: 10%">编号</th>
+            <th style="width: 40%">题目</th>
+            <th style="width: 30%">类别</th>
+            <th style="width: 10%">通过率</th>
+            <th style="width: 10%">难度</th>
+        </tr>
+
+        <tr>
+            <td>0001</td>
+            <td>路径总和</td>
+            <td>数据结构</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0002</td>
+            <td>数据结构习题集01</td>
+            <td>电子科大_数据结构_2020_Edward</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0003</td>
+            <td>数据结构习题集02</td>
+            <td>电子科大_数据结构_2020_Edward</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0004</td>
+            <td>数据结构习题集03</td>
+            <td>电子科大_数据结构_2020_Edward</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0005</td>
+            <td>期末试题库</td>
+            <td>电子科大_数据结构_2019_Edward</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+        <tr>
+            <td>0006</td>
+            <td>期中试题库</td>
+            <td>电子科大_数据结构_2020_Edward</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0007</td>
+            <td>期末试题库</td>
+            <td>四川大学_C语言基础_2020_胡歌</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0008</td>
+            <td>第43届ACM/ICPC</td>
+            <td>ACM/ICPC </td>
+            <td>10%</td>
+            <td>困难</td>
+
+        </tr>
+
+        <tr>
+            <td>0009</td>
+            <td>A - Azulejos</td>
+            <td>ACM/ICPC</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0010</td>
+            <td>石子游戏</td>
+            <td>动态规划</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+        <tr>
+            <td>0011</td>
+            <td>背包问题</td>
+            <td>动态规划</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0012</td>
+            <td>石子游戏 II</td>
+            <td>动态规划</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0013</td>
+            <td>石子游戏 III</td>
+            <td>动态规划</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0014</td>
+            <td>房价预测</td>
+            <td>逻辑回归</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0015</td>
+            <td>Tensorflow基础</td>
+            <td>深度学习</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+        <tr>
+            <td>0016</td>
+            <td>数字图片分类</td>
+            <td>深度学习</td>
+            <td>50%</td>
+            <td>中等</td>
+        </tr>
+
+        <tr>
+            <td>0017</td>
+            <td>机器学习基础</td>
+            <td>机器学习</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+        <tr>
+            <td>0018</td>
+            <td>口罩检测</td>
+            <td>实际项目</td>
+            <td>50%</td>
+            <td>中等</td>
+
+        </tr>
+
+    </table>
+    </div>
+
+
+
+            <div class="col-md-3" style="margin-top: 20px">
+<div class="sidebox">
+
+<div class="sidebox-header">
+    <span style="font-size:20px;"><i class="fa fa-bar-chart"></i> 最热路径</span>
+</div>
+<div class="sidebox-body course-content side-list-body">
+    <a href="/paths/python"><img style="width:25px;height:25px" src="../img/1471513769430.png"> Python 研发工程师</a>
+    <a href="/paths/bigdata"><img style="width:25px;height:25px" src="../img/1471513926288.png"> 大数据工程师</a>
+    <a href="/paths/cpp"><img style="width:25px;height:25px" src="../img/1471513793360.png"> C语言程序设计</a>
+    <a href="/paths/security"><img style="width:25px;height:25px" src="../img/1471513867033.png"> 机器学习（西瓜书）</a>
+    <a href="/paths/linuxsys"><img style="width:25px;height:25px" src="../img/1471514004752.png"> Linux 运维工程师</a>
+</div>
+
+</div>
+
+<div class="side-image side-qrcode">
+    <img src="../img/QRCode.png">
+    <div class="side-image-text">关注公众号，手机看教程</div>
+</div>
+
+<div class="sidebox side-list">
+    <div class="sidebox-header">
+        <span style="font-size:20px;"><i class="fa fa-flask"></i> 常见问题</span>
+    </div>
+    <div class="sidebox-body side-list-body">
+        <a href="/questions/80" target="_blank">实验操作很卡怎么办？</a>
+        <a href="/questions/91" target="_blank">为什么连不上实验桌面？</a>
+        <a href="/questions/360" target="_blank">"我的代码库"如何用？</a>
+        <a href="/questions/92" target="_blank">源代码环境默认用户及密码？</a>
+        <a href="/questions/235" target="_blank">环境中是否可以联网？</a>
+    </div>
+    <div class="sidebox-footer">
+        <div class="pull-right"><a href="/questions/?tag=%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98" target="_blank">查看全部</a></div>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+</html>
